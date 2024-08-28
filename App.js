@@ -7,6 +7,7 @@ import IconButton from "./components/IconButton";
 import CircleButton from "./components/CircleButton";
 import EmojiPicker from "./components/EmojiPicker";
 import EmojiList from "./components/EmojiList";
+import EmojiSticker from "./components/EmojiSticker";
 import * as ImagePicker from "expo-image-picker";
 
 const placeholderImage = require("./assets/images/background-image.png");
@@ -52,6 +53,7 @@ export default function App() {
           placeholderImageSource={placeholderImage}
           selectedImage={selectedImage}
         />
+        {pickedEmoji && <EmojiSticker imageSize={40} stickerSource={pickedEmoji}/>}
       </View>
       {showAppOptions ? (
         <View style={styles.optionsContainer}>
@@ -72,7 +74,7 @@ export default function App() {
             label="Choose a photo"
             onPress={pickImageAsync}
           />
-          <Button label="Use this photo" onPress={setShowAppOptions(true)} />
+          <Button label="Use this photo" onPress={() => setShowAppOptions(true)} />
         </View>
       )}
       <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
